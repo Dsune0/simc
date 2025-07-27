@@ -56151,7 +56151,7 @@ Proc Chance      : 101%
 Attributes       : Allow Item Spell In PvP (13), Allow While Sitting (27), No Immunities (29), Allow Dead Target (64), Allow Aura While Dead (116), Aura Points On Client (268)
 Effects          :
 #1 (id=240067)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 0xf | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Stat: Str | Stat: Agi | Stat: Sta | Stat: Int | Target: Self (1)
 Description      : Increases all stats by $s1%. This effect persists through death.
 Tooltip          : Increases all stats by $s1%.
 
@@ -59541,7 +59541,7 @@ Duration         : 1800 seconds
 Attributes       : No Redirection (35), No Reflection (39), Allow Dead Target (64)
 Effects          :
 #1 (id=251272)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Misc Value: 3 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 Tooltip          : Increases your Strength, Intellect, and Agility by $s1 percent while in the Spires of Arak.
 
 Name             : Draenor Cartographer's Notes (id=175764) 
@@ -61213,7 +61213,7 @@ Attributes       : Do Not Display Range (126)
 Aura Interrupt   : Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=253563)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Int | Target: Self (1)
 Description      : Increases Intellect by 10% for $d.
 Tooltip          : Increases Intellect by 10% for $d.
 
@@ -61227,7 +61227,7 @@ Attributes       : Do Not Display Range (126)
 Aura Interrupt   : Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=253564)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Str | Target: Self (1)
 Description      : Increases Strength by 10% for $d.
 Tooltip          : Increases Strength by 10% for $d.
 
@@ -61240,7 +61240,7 @@ Labels           : 1379
 Attributes       : Do Not Display Range (126)
 Effects          :
 #1 (id=253565)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Agi | Target: Self (1)
 Description      : Increases Agility by 10% for $d.
 Tooltip          : Increases Agility by 10% for $d.
 
@@ -61294,7 +61294,7 @@ Attributes       : Do Not Display Range (126)
 Aura Interrupt   : Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=253586)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Stat: Agi | Target: Self (1)
 Description      : Increases Agility by 15% for $d.
 Tooltip          : Increases Agility by 15% for $d.
 
@@ -61308,7 +61308,7 @@ Attributes       : Do Not Display Range (126)
 Aura Interrupt   : Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=253589)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Stat: Str | Target: Self (1)
 Description      : Increases Strength by 15% for $d.
 Tooltip          : Increases Strength by 15% for $d.
 
@@ -61322,7 +61322,7 @@ Attributes       : Do Not Display Range (126)
 Aura Interrupt   : Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=253590)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 15 | Scaled Value: 15 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 15 | Scaled Value: 15 | Stat: Int | Target: Self (1)
 Description      : Increases Intellect by 15% for $d.
 Tooltip          : Increases Intellect by 15% for $d.
 
@@ -104700,7 +104700,7 @@ Duration         : 1800 seconds
 Attributes       : Include In Advanced Combat Log (72), Not On Player Controlled NPC (168), Aura Points On Client (268), Visible only to caster (conversations only) (343)
 Effects          :
 #1 (id=708518)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x8 | Radius: 100 yards | Target: Friendly or Raid (118)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Int | Radius: 100 yards | Target: Friendly or Raid (118)
 Description      : Increases the target's Intellect by $s1% for $d.  
 
 If target is in your party or raid, all party and raid members will be affected. Not usable above level $maxcast.
@@ -104745,7 +104745,7 @@ Duration         : 1800 seconds
 Attributes       : Include In Advanced Combat Log (72), Not On Player Controlled NPC (168), Aura Points On Client (268), Visible only to caster (conversations only) (343)
 Effects          :
 #1 (id=708522)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Radius: 100 yards | Target: Friendly or Raid (118)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Radius: 100 yards | Target: Friendly or Raid (118)
 Description      : Increases the target's Stamina by $s1% for $d.  
 
 If target is in your party or raid, all party and raid members will be affected. Not usable above level $maxcast.
@@ -142641,7 +142641,7 @@ Azerite Power Id : 570
 Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149)
 Effects          :
 #1 (id=774112)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
 
 Name             : Perseverance (id=300575) [Passive] 
@@ -142653,7 +142653,7 @@ Azerite Power Id : 571
 Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149)
 Effects          :
 #1 (id=774115)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
 
 Name             : Perseverance (id=300576) [Passive] 
@@ -142665,7 +142665,7 @@ Azerite Power Id : 572
 Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149)
 Effects          :
 #1 (id=774116)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
 
 Name             : Perseverance (id=300577) [Passive] 
@@ -142677,7 +142677,7 @@ Azerite Power Id : 573
 Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149)
 Effects          :
 #1 (id=774117)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
 
 Name             : Enhance Synapses (id=300612) 
@@ -150966,7 +150966,7 @@ Duration         : 1800 seconds
 Attributes       : Include In Advanced Combat Log (72), Not On Player Controlled NPC (168), Aura Points On Client (268)
 Effects          :
 #1 (id=792429)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 7 | Scaled Value: 7 | Misc Value 2: 0x4 | Radius: 100 yards | Target: Friendly or Raid (118)
+                   Base Value: 7 | Scaled Value: 7 | Stat: Sta | Radius: 100 yards | Target: Friendly or Raid (118)
 Description      : Increases the target's Stamina by $s1% for $d.  
 
 If target is in your party or raid, all party and raid members will be affected.
@@ -151809,7 +151809,7 @@ Azerite Power Id : 578
 Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149)
 Effects          :
 #1 (id=794934)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
 
 Name             : Perseverance (id=312928) [Passive] 
@@ -151821,7 +151821,7 @@ Azerite Power Id : 579
 Attributes       : Passive (6), No Aura Icon (60), Allow Aura While Dead (116), Not In Spellbook (143), Allow Entering Arena (149)
 Effects          :
 #1 (id=794935)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : Stamina increased by $s1%.
 
 Name             : Guardian Shell (id=313001) 
@@ -153727,7 +153727,7 @@ Triggered By     : Flash of Insight (316717)
 Attributes       : Aura Points On Client (268), Check Required Target Aura By Caster (382)
 Effects          :
 #1 (id=801445)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 1 | Scaled Value: 1 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 1 | Scaled Value: 1 | Stat: Int | Target: Self (1)
 Description      : $@spelldesc316717
 Tooltip          : Intellect increased by $w1%
 
@@ -156893,11 +156893,11 @@ Labels           : 292
 Attributes       : Do Not Log (8), Allow While Mounted (24), Allow While Sitting (27), No Immunities (29), Allow While Stealthed (37), No Threat (42), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not an Action (92), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Ignore Caster & Target Restrictions (124), Allow Cast While Casting (135), Suppress Weapon Procs (151), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Not In Spellbook Until Learned (269), Allow Cast While Channeling (308)
 Effects          :
 #1 (id=812469)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Str | Target: Self (1)
 #2 (id=873552)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Agi | Target: Self (1)
 #3 (id=873553)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Int | Target: Self (1)
 Description      : $@spelldesc323074
 Tooltip          : $pri increased by $m1%.
 
@@ -156911,7 +156911,7 @@ Labels           : 292
 Attributes       : Do Not Log (8), Allow While Mounted (24), Allow While Sitting (27), No Immunities (29), Allow While Stealthed (37), No Threat (42), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not an Action (92), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Ignore Caster & Target Restrictions (124), Allow Cast While Casting (135), Suppress Weapon Procs (151), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Not In Spellbook Until Learned (269), Allow Cast While Channeling (308)
 Effects          :
 #1 (id=812471)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc323074
 Tooltip          : Stamina increased by $m1%.
 
@@ -157709,7 +157709,7 @@ Triggered By     : Celestial Guidance - Proc (DNT) (324747)
 Attributes       : Allow While Mounted (24), Allow While Sitting (27), No Immunities (29), Allow While Stealthed (37), No Threat (42), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not an Action (92), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Cast While Casting (135), Suppress Weapon Procs (151), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow While Riding Vehicle (204), Aura Points On Client (268), Allow Cast While Channeling (308)
 Effects          :
 #1 (id=814563)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 Description      : Increase your $pri by $s1%.
 Tooltip          : $pri increased by $w1%.
 
@@ -158566,7 +158566,7 @@ Effects          :
 #2 (id=818504)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 #3 (id=876235)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 #4 (id=876236)   : Apply Aura (6) | Modify Armor% (101)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
 #5 (id=876250)   : Apply Aura (6) | Apply Flat Modifier w/ Label (219): Spell Effect 3 (23)
@@ -161653,7 +161653,7 @@ Attributes       : Aura Points On Client (268), Not In Spellbook Until Learned (
 Aura Interrupt   : Leave World (19)
 Effects          :
 #1 (id=827726)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 1 | Scaled Value: 1 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 1 | Scaled Value: 1 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 Description      : $@spelldesc319973
 Tooltip          : $pri increased by $w1%.
 
@@ -161754,7 +161754,7 @@ Attributes       : Aura Points On Client (268)
 Aura Interrupt   : Change Specialization (38)
 Effects          :
 #1 (id=827876)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Int | Target: Self (1)
 Description      : $@spelldesc332928
 Tooltip          : Intellect increased by $s1%
 
@@ -161857,7 +161857,7 @@ Attributes       : Include In Advanced Combat Log (72), Aura Points On Client (2
 Aura Interrupt   : Leave World (19)
 Effects          :
 #1 (id=828085)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | PvP Coefficient: 0.5 | Stat: Sta | Target: Self (1)
 #2 (id=828086)   : Apply Aura (6) | Modify Healing% Done (136)
                    Base Value: 4 | Scaled Value: 4 | Misc Value: 0x7f | Target: Self (1)
                    Affected School(s): All
@@ -165325,7 +165325,7 @@ Attributes       : Do Not Display Range (126), Aura Points On Client (268), Not 
 Aura Interrupt   : Leave World (19), Enter World (22)
 Effects          :
 #1 (id=838471)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 12 | Scaled Value: 12 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 12 | Scaled Value: 12 | Stat: Str | Target: Self (1)
 Description      : $@spelldesc339265
 Tooltip          : Strength increased by $w1%.
 
@@ -166928,7 +166928,7 @@ Labels           : 292
 Attributes       : Do Not Display Range (126), Aura Points On Client (268), Not In Spellbook Until Learned (269)
 Effects          :
 #1 (id=843050)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 0xb | Radius: 0 - 8 yards | Target: At Self (18) -> At Friendly in Area (31)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Str | Stat: Agi | Stat: Int | Radius: 0 - 8 yards | Target: At Self (18) -> At Friendly in Area (31)
 #2 (id=872120)   : Apply Aura (6) | Dummy (4)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 #3 (id=872121)   : Apply Aura (6) | Dummy (4)
@@ -168280,7 +168280,7 @@ Triggered By     : Soulshape (310143)
 Attributes       : Do Not Log (8), Do Not Sheath (18), No Aura Cancel (31), No Threat (42), No Aura Icon (60), Include In Advanced Combat Log (72), Allow Entering Arena (149), Aura Points On Client (268), Not In Spellbook Until Learned (269)
 Effects          :
 #1 (id=868669)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 45 | Scaled Value: 45 | Misc Value: 2 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 45 | Scaled Value: 45 | Misc Value: 2 | Stat: Sta | Target: Self (1)
 #2 (id=868670)   : Apply Aura (6) | Modify Base Resistance (142)
                    Base Value: 220 | Scaled Value: 220 | Misc Value: 1 | Target: Self (1)
 #3 (id=868671)   : Apply Aura (6) | Modify Attacker Melee Crit Chance (187)
@@ -173215,7 +173215,7 @@ Labels           : 292
 Attributes       : Allow While Mounted (24), Allow While Sitting (27), No Immunities (29), Allow While Stealthed (37), No Threat (42), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not an Action (92), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Ignore Caster & Target Restrictions (124), Allow Cast While Casting (135), Suppress Weapon Procs (151), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Aura Points On Client (268), Allow Cast While Channeling (308)
 Effects          :
 #1 (id=884286)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 0xf | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Str | Stat: Agi | Stat: Sta | Stat: Int | Target: Self (1)
 #2 (id=885473)   : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Target: Unknown(87)
 Description      : $@spelldesc351149
@@ -173419,7 +173419,7 @@ Duration         : 14400 seconds
 Attributes       : Allow Aura While Dead (116), Allow Entering Arena (149), Aura Points On Client (268)
 Effects          :
 #1 (id=884919)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 Description      : $@spelldesc351750
 Tooltip          : $pri increased by $w1%.
 
@@ -177077,7 +177077,7 @@ Labels           : 16: Class Spells
 Attributes       : Aura Points On Client (268)
 Effects          :
 #1 (id=892935)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 Description      : $@spelldesc357902
 Tooltip          : $pri increased by ${$W1}.1%.
 
@@ -180619,7 +180619,7 @@ Proc Chance      : 101%
 Attributes       : Allow While Mounted (24), No Immunities (29), Allow While Stealthed (37), No Threat (42), Allow Dead Target (64), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Ignore Caster & Target Restrictions (124), Aura Expires Offline (130), Aura Is Buff (140), Suppress Weapon Procs (151), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Update Passives on Apply/Remove (344), Don't close loot window (379)
 Effects          :
 #1 (id=906524)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 Description      : $@spelldesc367254
 $@spellaura366333
 Tooltip          : $@spellaura367254
@@ -180635,7 +180635,7 @@ Proc Chance      : 101%
 Attributes       : Allow While Mounted (24), No Immunities (29), Allow While Stealthed (37), No Threat (42), Allow Dead Target (64), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Ignore Caster & Target Restrictions (124), Aura Expires Offline (130), Aura Is Buff (140), Suppress Weapon Procs (151), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Update Passives on Apply/Remove (344), Don't close loot window (379)
 Effects          :
 #1 (id=906525)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc367263
 $@spellaura366333
 Tooltip          : $@spellaura367263
@@ -181883,7 +181883,7 @@ Proc Chance      : 101%
 Attributes       : Passive (6), Allow Cast While Dead (23), Allow While Mounted (24), Allow While Sitting (27), No Immunities (29), No Aura Cancel (31), Allow While Stealthed (37), No Threat (42), Allow Dead Target (64), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not an Action (92), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Ignore Caster & Target Restrictions (124), Aura Expires Offline (130), Allow Cast While Casting (135), Suppress Weapon Procs (151), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Allow Cast While Channeling (308), Don't close loot window (379), Allow during spell override (404), Do Not Display Cast Time (441)
 Effects          :
 #1 (id=910791)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 0xb | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Str | Stat: Agi | Stat: Int | Target: Self (1)
 #2 (id=911195)   : Apply Party Aura (35) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0
 Description      : Increase $pri by $s1%.
@@ -182025,7 +182025,7 @@ Proc Chance      : 101%
 Attributes       : Passive (6), Allow Cast While Dead (23), Allow While Mounted (24), Allow While Sitting (27), No Immunities (29), No Aura Cancel (31), Allow While Stealthed (37), No Threat (42), Allow Dead Target (64), Ignore Line of Sight (66), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), No Initial Threat (86), Not an Action (92), Not a Proc (105), Suppress Caster Procs (112), Suppress Target Procs (113), Allow Aura While Dead (116), Ignore Caster & Target Restrictions (124), Aura Expires Offline (130), Allow Cast While Casting (135), Suppress Weapon Procs (151), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow On Charmed Targets (201), Allow While Riding Vehicle (204), Allow Cast While Channeling (308), Don't close loot window (379), Allow during spell override (404), Do Not Display Cast Time (441)
 Effects          :
 #1 (id=910804)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 10 | Scaled Value: 10 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 10 | Scaled Value: 10 | Stat: Sta | Target: Self (1)
 #2 (id=911190)   : Apply Party Aura (35) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0
 Description      : Increase Stamina by $s1%.
@@ -199029,7 +199029,7 @@ Labels           : 969
 Attributes       : Passive (6)
 Effects          :
 #1 (id=1026726)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 6 | Scaled Value: 6 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 6 | Scaled Value: 6 | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc389419
 
 Name             : Sustained Strength (id=390121) [Passive] 
@@ -199043,7 +199043,7 @@ Labels           : 969
 Attributes       : Passive (6)
 Effects          :
 #1 (id=1026727)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 7 | Scaled Value: 7 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 7 | Scaled Value: 7 | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc389419
 
 Name             : Sustained Strength (id=390122) [Passive] 
@@ -199057,7 +199057,7 @@ Labels           : 969
 Attributes       : Passive (6)
 Effects          :
 #1 (id=1026728)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 8 | Scaled Value: 8 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 8 | Scaled Value: 8 | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc389419
 
 Name             : Scepter of Spectacle: Fire (id=390124) 

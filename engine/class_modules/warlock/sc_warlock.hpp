@@ -370,6 +370,8 @@ public:
     const spell_data_t* fiendish_wrath_dmg; // TODO: Multiplier fixes for this
     const spell_data_t* fel_explosion;
 
+    player_talent_t master_summoner;
+
     // Destruction
     player_talent_t conflagrate; // Base 2 charges
     const spell_data_t* conflagrate_2; // Energize data
@@ -578,6 +580,7 @@ public:
     action_t* demonfire_infusion;
     action_t* jackpot_ua;
     action_t* jackpot_cdf;
+    action_t* eye_blast;  // Diabolist 2pc damage proc
   } proc_actions;
 
   struct tier_sets_t
@@ -610,7 +613,12 @@ public:
     const spell_data_t* demonfire_flurry; // Procs Demonfire bolts on Jackpot proc
 
     // Soul Harvester
-    const spell_data_t* sh_tww3_rampaging_demonic_soul;
+    const spell_data_t* rampaging_demonic_soul;
+
+    // Diabolist
+    const spell_data_t* demonic_oculus;        // TWW3 Diabolist 2pc stacking buff
+    const spell_data_t* eye_blast;             // TWW3 Diablist 2pc damage proc
+    const spell_data_t* demonic_intelligence;  // TWW3 Diabolist 4pc stacking buff
 
   } tier;
 
@@ -685,6 +693,8 @@ public:
     propagate_const<buff_t*> infernal_bolt;
     propagate_const<buff_t*> abyssal_dominion;
     propagate_const<buff_t*> ruination;
+    propagate_const<buff_t*> demonic_oculus;        // TWW3 Diabolist 2pc buff
+    propagate_const<buff_t*> demonic_intelligence;  // TWW3 Diabolist 4pc buff
 
     // Hellcaller Buffs
     propagate_const<buff_t*> malevolence;
@@ -888,6 +898,7 @@ public:
   double composite_spell_crit_chance() const override;
   double composite_melee_crit_chance() const override;
   double composite_player_critical_damage_multiplier( const action_state_t* ) const override;
+  double composite_mastery() const override;
   double composite_rating_multiplier( rating_e ) const override;
   void init_blizzard_action_list() override;
   void combat_begin() override;

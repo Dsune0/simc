@@ -81,7 +81,6 @@ const char* weapon_class_string       ( int weapon_class );
 const char* weapon_subclass_string    ( int subclass );
 const char* item_quality_string       ( int quality );
 const char* specialization_string     ( specialization_e spec );
-std::string hero_talent_string    ( hero_talent_e hero_talent );
 const char* movement_direction_string( movement_direction_type );
 const char* spec_string_no_class( const player_t&p );
 const char* retarget_event_string     ( retarget_source );
@@ -121,7 +120,6 @@ stat_e parse_stat_type           ( util::string_view name );
 scale_metric_e parse_scale_metric( util::string_view name );
 profile_source parse_profile_source( util::string_view name );
 specialization_e parse_specialization_type( util::string_view name );
-hero_talent_e parse_hero_talent_type( util::string_view name );
 movement_direction_type parse_movement_direction( util::string_view name );
 item_subclass_armor parse_armor_type( util::string_view name );
 weapon_e parse_weapon_type       ( util::string_view name );
@@ -157,7 +155,6 @@ profession_e translate_profession_id( int skill_id );
 bool socket_gem_match( item_socket_color socket, item_socket_color gem );
 double crit_multiplier( meta_gem_e gem );
 bool scale_metric_is_raid( scale_metric_e );
-bool is_valid_hero_tree_for_class( hero_talent_e hero_talent, player_e class_type );
 
 template<typename StringType = std::string>
 inline std::vector<StringType> string_split( util::string_view str, util::string_view delim, bool skip_empty_entries = true )

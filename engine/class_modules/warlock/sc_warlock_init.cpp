@@ -329,6 +329,8 @@ namespace warlock
     talents.fiendish_wrath_dmg = find_spell( 386702 );
     talents.fel_explosion = find_spell( 386609 );
 
+    talents.master_summoner = find_talent_spell( talent_tree::SPECIALIZATION, "Master Summoner" );  // Should be ID 1240189
+
     // Additional Tier Set spell data
 
     // Nerub-ar Palace
@@ -511,7 +513,10 @@ namespace warlock
     // Manaforge omega
     if ( sim->dbc->wowv() >= wowv_t{ 11, 2, 0 } )
     {
-      tier.sh_tww3_rampaging_demonic_soul = find_spell( 1239689 );
+      tier.rampaging_demonic_soul = find_spell( 1239689 );
+      tier.demonic_oculus         = find_spell( 1238810 );
+      tier.eye_blast              = find_spell( 1239510 );
+      tier.demonic_intelligence   = find_spell( 1239569 );
     }
 
     // Initialize some default values for pet spawners
@@ -600,7 +605,7 @@ namespace warlock
     hero.malevolence_buff = find_spell( 442726 );
     hero.malevolence_dmg = find_spell( 446285 );
 
-    cooldowns.blackened_soul->duration = 500_ms; // TODO: Set using data once hotfix is in using hero.blackened_soul->internal_cooldown();
+    cooldowns.blackened_soul->duration = 0_ms; // TODO: Set using data once hotfix is in using hero.blackened_soul->internal_cooldown();
     cooldowns.seeds_of_their_demise->duration = 15_s;
   }
 
@@ -927,6 +932,15 @@ namespace warlock
     buffs.abyssal_dominion = make_buff( this, "Abyssal Dominion", hero.abyssal_dominion_buff );
 
     buffs.ruination = make_buff( this, "ruination", hero.ruination_buff );
+
+    if ( sim->dbc->wowv() >= wowv_t{ 11, 2, 0 } )
+    {
+      buffs.demonic_oculus = make_buff( this, "demonic_oculus", tier.demonic_oculus );
+
+      buffs.demonic_intelligence = make_buff( this, "demonic_intelligence", tier.demonic_intelligence )
+                                       ->set_pct_buff_type( STAT_PCT_BUFF_INTELLECT )
+                                       ->set_default_value_from_effect_type( A_MOD_TOTAL_STAT_PERCENTAGE );
+    }
   }
 
   void warlock_t::create_buffs_hellcaller()

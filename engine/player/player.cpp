@@ -848,9 +848,9 @@ bool parse_set_bonus( sim_t* sim, std::string_view, std::string_view value )
   specialization_e spec = SPEC_NONE;
   hero_talent_e hero = HERO_NONE;
 
-  if ( p->sets->new_parse_set_bonus_option( value, set_bonus, bonus, enabled, spec, hero ) )
+  if ( p->sets->parse_set_bonus_option_verbose( value, set_bonus, bonus, enabled, spec, hero ) )
   {
-    p->sets->set_bonus_spec_data [ set_bonus ][ composite_idx( spec, hero ) ][ bonus].overridden = enabled;
+    p->sets->set_bonus_spec_data[ set_bonus ][ composite_idx( spec, hero ) ][ bonus ].overridden = enabled;
     return true;
   }
 
@@ -869,16 +869,26 @@ bool parse_set_bonus( sim_t* sim, std::string_view, std::string_view value )
     return false;
   }
 
-  if ( !p->sets->parse_set_bonus_option( set_bonus_split[ 0 ], set_bonus, bonus ) )
+  if ( !p->sets->parse_set_bonus_option( set_bonus_split[ 0 ], set_bonus, bonus, hero ) )
   {
     sim->error( error_str, p->name(), value, p->sets->generate_set_bonus_options() );
     return false;
   }
 
-  const auto* item_set_bonus = p->sets->set_bonus_spec_data[ set_bonus ][ dbc::spec_idx( p->specialization() ) ][ bonus ].bonus;
+  if ( hero != HERO_NONE )
+  {
+    p->sets->set_bonus_spec_data[ set_bonus ][ composite_idx( spec, hero ) ][ bonus ].overridden = opt_val;
+    return true;
+  }
+
+  const auto* item_set_bonus =
+    p->sets->set_bonus_spec_data[ set_bonus ][ dbc::spec_idx( p->specialization() ) ][ bonus ].bonus;
+
   if ( !item_set_bonus || item_set_bonus->trait_sub_tree != -1 )
   {
-    p->sim->error( "The unspecified set bonus option does not support tier sets enabled by TraitSubTree! Check Equipment page of wiki for alternative syntax." );
+    p->sim->error(
+      "The unspecified set bonus option does not support tier sets enabled by TraitSubTree! Check Equipment page of "
+      "wiki for alternative syntax." );
     return false;
   }
 
@@ -6728,7 +6738,7 @@ void player_t::reset()
 
   range::for_each( proc_list, []( proc_t* proc ) { proc->reset(); } );
 
-  range::for_each( proc_rng_list, []( proc_rng_t* prng ) { prng->reset(); } );
+  range::for_each( proc_rng_list, []( proc_rng_t* prng ) { prng->reset( reset_type_e::ITERATION ); } );
 
   range::for_each( spawners, []( spawner::base_actor_spawner_t* obj ) { obj->reset(); } );
 
@@ -10108,10 +10118,10 @@ struct use_item_t : public action_t
     {
       auto tail = name.substr( 14 );
       slot_e s = util::parse_slot_type( item_slot );
-      
+
       if ( s == SLOT_TRINKET_1 )
         return unique_gear::create_expression( *player, fmt::format("trinket.2.{}", tail ) );
-      
+
       if ( s == SLOT_TRINKET_2 )
         return unique_gear::create_expression( *player, fmt::format("trinket.1.{}", tail ) );
 
@@ -10122,10 +10132,10 @@ struct use_item_t : public action_t
     {
       auto tail = name.substr( 13 );
       slot_e s = util::parse_slot_type( item_slot );
-      
+
       if ( s == SLOT_TRINKET_1 )
         return unique_gear::create_expression( *player, fmt::format("trinket.1.{}", tail ) );
-      
+
       if ( s == SLOT_TRINKET_2 )
         return unique_gear::create_expression( *player, fmt::format("trinket.2.{}", tail ) );
 
@@ -10135,10 +10145,10 @@ struct use_item_t : public action_t
     if ( split.size() == 1 && split[ 0 ] == "this_trinket_slot" )
     {
       slot_e s = util::parse_slot_type( item_slot );
-      
+
       if ( s == SLOT_TRINKET_1 )
         return std::make_unique<const_expr_t>( name, 1 );
-      
+
       if ( s == SLOT_TRINKET_2 )
         return std::make_unique<const_expr_t>( name, 2 );
 
@@ -12962,6 +12972,8 @@ void player_t::copy_from( player_t* source )
   shadowlands_opts                  = source->shadowlands_opts;
   dragonflight_opts                 = source->dragonflight_opts;
   thewarwithin_opts                 = source->thewarwithin_opts;
+  load_default_gear                 = source->load_default_gear;
+  load_default_talents              = source->load_default_talents;
   use_blizzard_action_list          = source->use_blizzard_action_list;
   one_button_mode                   = source->one_button_mode;
   use_cds_with_blizzard_action_list = source->use_cds_with_blizzard_action_list;
@@ -13490,6 +13502,9 @@ void player_t::create_options()
   add_option( opt_float( "thewarwithin.suspicious_energy_drink_bonus_chance",
                          thewarwithin_opts.suspicious_energy_drink_bonus_chance, 0, 1 ) );
   add_option( opt_timespan( "thewarwithin.additional_gcd_time", thewarwithin_opts.additional_gcd_time, 0_s, 10_s ) );
+  add_option( opt_string( "thewarwithin.alchemical_chaos_initial_stat", thewarwithin_opts.alchemical_initial_stat ) );
+  add_option( opt_string( "thewarwithin.alchemical_chaos_initial_penalty_stats",
+                          thewarwithin_opts.alchemical_initial_penalty ) );
 }
 
 player_t* player_t::create( sim_t*, const player_description_t& )

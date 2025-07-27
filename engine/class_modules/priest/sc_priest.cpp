@@ -4032,7 +4032,6 @@ void priest_t::create_buffs()
 
           if ( !new_ )
           {
-            buffs.voidheart->expire();
             buffs.darkening_horizon->expire();
             background_actions.collapsing_void->trigger( state.last_entropic_rift_target,
                                                          buffs.collapsing_void->check() );
@@ -4043,6 +4042,7 @@ void priest_t::create_buffs()
               buffs.overflowing_void->trigger( 1, value );
             }
             buffs.collapsing_void->expire();
+            buffs.voidheart->expire();
           }
         } );
   }
@@ -4062,8 +4062,9 @@ void priest_t::create_buffs()
 
   if ( sets->has_set_bonus( HERO_VOIDWEAVER, TWW3, B4 ) )
   {
+    // BUG: https://github.com/SimCMinMax/WoW-BugTracker/issues/1356
     buffs.collapsing_void->default_value +=
-        tww3_spells.voidweaver_4pc->effectN( specialization() == PRIEST_SHADOW ? 3 : 1 ).percent();
+        tww3_spells.voidweaver_4pc->effectN( specialization() == PRIEST_SHADOW ? 3 : 1 ).percent() * ( bugs ? 2 : 1 );
   }
 
   // Unknown what this piece of spell data is for. Discipline testing shows a maximum of 10 stacks.

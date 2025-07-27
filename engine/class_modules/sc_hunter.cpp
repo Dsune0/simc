@@ -479,7 +479,6 @@ public:
     // Beast Mastery Tree
     std::array<buff_t*, BARBED_SHOT_BUFFS_MAX> barbed_shot;
     buff_t* thrill_of_the_hunt;
-    buff_t* dire_beast;
     buff_t* bestial_wrath;
     buff_t* call_of_the_wild;
     buff_t* beast_cleave; 
@@ -583,7 +582,6 @@ public:
   struct gains_t
   {
     gain_t* barbed_shot;
-    gain_t* dire_beast;
 
     gain_t* terms_of_engagement;
 
@@ -1374,7 +1372,7 @@ public:
         {
           if ( ab::data().effectN( i ).subtype() == effect_subtype_t::A_PERIODIC_DAMAGE &&
             ab::data().get_school_type() == SCHOOL_PHYSICAL &&
-            ab::data().effectN( i ).mechanic() == MECHANIC_BLEED )
+            ( ab::data().effectN( i ).mechanic() == MECHANIC_BLEED || ab::data().mechanic() == MECHANIC_BLEED ) )
           {
             dire_beast_chance = p()->talents.dire_beast->effectN( 1 ).percent();
             break;
@@ -1779,7 +1777,7 @@ static std::pair<timespan_t, int> dire_beast_duration( hunter_t* p )
   // isn't important and combat log testing shows some variation in
   // attack speeds.  This is not quite perfect but more accurate
   // than plateaus.
-  const timespan_t base_duration    = p->buffs.dire_beast->buff_duration();
+  const timespan_t base_duration    = p->talents.dire_beast_summon->duration() + p->talents.dire_frenzy->effectN( 1 ).time_value();
   const timespan_t swing_time       = 2_s * p->cache.auto_attack_speed();
   double partial_attacks_per_summon = base_duration / swing_time;
   int base_attacks_per_summon       = static_cast<int>( partial_attacks_per_summon );
@@ -1835,7 +1833,6 @@ struct dire_critter_t : public hunter_pet_t
     : hunter_pet_t( owner, n, PET_HUNTER, true /* GUARDIAN */, true /* dynamic */ )
   {
     resource_regeneration = regen_type::DISABLED;
-
   }
 
   void create_buffs() override
@@ -1890,15 +1887,6 @@ struct dire_beast_t final : public dire_critter_t
     // 13-10-22 Dire Beast damage increased by 50%. (60% -> 90%)
     // 22-7-24 Dire Beast damage increased by 10% (90% -> 100%)
     owner_coeff.ap_from_ap = 1;
-  }
-
-  void summon( timespan_t duration = 0_ms ) override
-  {
-    dire_critter_t::summon( duration );
-
-    // TODO check
-    o()->buffs.dire_beast->trigger( duration );
-    o()->resource_gain( RESOURCE_FOCUS, energize->effectN( 2 ).base_value(), o()->gains.dire_beast );
   }
 };
 
@@ -2597,8 +2585,8 @@ public:
         for ( size_t i = 1; i <= ab::data().effect_count(); i++ )
         {
           if ( ab::data().effectN( i ).subtype() == effect_subtype_t::A_PERIODIC_DAMAGE &&
-            ab::data().effectN( i ).school_type() == SCHOOL_PHYSICAL &&
-            ab::data().effectN( i ).mechanic() == MECHANIC_BLEED )
+            ab::data().get_school_type() == SCHOOL_PHYSICAL &&
+            ( ab::data().effectN( i ).mechanic() == MECHANIC_BLEED || ab::data().mechanic() == MECHANIC_BLEED ) )
           {
             dire_beast_chance = o()->talents.dire_beast->effectN( 1 ).percent();
             break;
@@ -2608,7 +2596,7 @@ public:
     }
 
     if ( dire_beast_chance > 0 )
-      ab::sim->print_debug( "{} action {} set to trigger Dire Beast", ab::player->name(), ab::name() );
+      ab::sim->print_debug( "{} action {} set to trigger Dire Beast with {}% chance", ab::player->name(), ab::name(), dire_beast_chance * 100 );
   }
 
   double composite_da_multiplier( const action_state_t* s ) const override
@@ -3189,9 +3177,9 @@ struct bloodshed_t : hunter_pet_attack_t<hunter_main_pet_base_t>
   bloodshed_t( hunter_main_pet_base_t* p ) : hunter_pet_attack_t( "bloodshed", p, p->o()->talents.bloodshed_dot )
   {
     background = true;
+    // Seems to be ~10% based on a log of 2472 Bloodshed ticks giving 258 Dire Beast summons. Will trigger without Dire Beast talented.
+    dire_beast_chance = 0.1;
   }
-
-  // TODO custom dire_beast_chance in tick() to trigger Dire Beast with an increased chance.
 };
 
 // Bestial Wrath ===========================================================
@@ -3250,6 +3238,7 @@ struct ravenous_leap_t : public hunter_pet_attack_t<fenryr_t>
   ravenous_leap_t( fenryr_t* p ) : hunter_pet_attack_t( "ravenous_leap", p, p->find_spell( 459753 ) )
   {
     background = true;
+    dire_beast_chance = -1;
   }
 };
 
@@ -3278,6 +3267,7 @@ struct rend_flesh_t : public hunter_pet_attack_t<bear_t>
   {
     background = true;
     aoe = as<int>( data().effectN( 2 ).base_value() );
+    dire_beast_chance = -1;
 
     if ( o()->talents.ursine_fury.ok() )
     {
@@ -3872,11 +3862,11 @@ void hunter_t::trigger_lunar_storm( player_t* target )
 
 bool hunter_t::consume_howl_of_the_pack_leader( player_t* target )
 {
-  bool up = false;
+  int up = 0;
 
   if ( buffs.howl_of_the_pack_leader_wyvern->check() )
   {
-    up = true;
+    up++;
     buffs.wyverns_cry->trigger( as<int>( talents.howl_of_the_pack_leader->effectN( 3 ).base_value() + specs.survival_hunter->effectN( 12 ).base_value() ) );
     buffs.howl_of_the_pack_leader_wyvern->expire();
     buffs.sharpened_fangs->trigger();
@@ -3884,7 +3874,7 @@ bool hunter_t::consume_howl_of_the_pack_leader( player_t* target )
 
   if ( buffs.howl_of_the_pack_leader_boar->check() )
   {
-    up = true;
+    up++;
     state.current_boar_charge = make_event<ground_aoe_event_t>( *sim, this, 
       ground_aoe_params_t()
         .target( target )
@@ -3916,18 +3906,18 @@ bool hunter_t::consume_howl_of_the_pack_leader( player_t* target )
 
   if ( buffs.howl_of_the_pack_leader_bear->check() )
   {
-    up = true;
+    up++;
     pets.bear.spawn( talents.howl_of_the_pack_leader_bear_summon->duration() + talents.dire_frenzy->effectN( 1 ).time_value() );
     buffs.howl_of_the_pack_leader_bear->expire();
     buffs.grizzled_fur->trigger();
   }
 
-  // Only applied once even if two are summoned at once.
   if ( up )
   {
-    cooldowns.barbed_shot->adjust( -talents.pack_mentality->effectN( 2 ).time_value() );
-    cooldowns.wildfire_bomb->adjust( -talents.pack_mentality->effectN( 3 ).time_value() );
-    if ( actions.stampede )
+    cooldowns.barbed_shot->adjust( -talents.pack_mentality->effectN( 2 ).time_value() * up );
+    cooldowns.wildfire_bomb->adjust( -talents.pack_mentality->effectN( 3 ).time_value() * up );
+
+    if ( actions.stampede && buffs.lead_from_the_front->check() )
       actions.stampede->execute_on_target( target );
   }
 
@@ -4645,7 +4635,7 @@ struct kill_shot_base_t : hunter_ranged_attack_t
       
       active += as<int>( p()->pets.cotw_stable_pet.n_active_pets() );
 
-      am *= 1 + p()->talents.hunters_prey_hidden_buff->effectN( 3 ).percent() * std::min( active, as<int>( p()->talents.hunters_prey_hidden_buff->max_stacks() ) );
+      am *= 1 + p()->talents.hunters_prey_hidden_buff->effectN( 1 ).percent() * std::min( active, as<int>( p()->talents.hunters_prey_hidden_buff->max_stacks() ) );
     }
 
     return am;
@@ -5154,7 +5144,7 @@ struct stampede_t : hunter_ranged_attack_t
     damage( p->get_background_action<damage_t>( "stampede_tick" ) )
   {
     background = dual = true;
-    aoe = as<int>( p->tier_set.tww_s3_pack_leader_4pc->effectN( 2 ).base_value() );
+    tick_zero = true;
   }
 
   void tick( dot_t* d ) override
@@ -5313,7 +5303,7 @@ struct barbed_shot_t: public hunter_ranged_attack_t
 
     bestial_wrath_reduction = p -> talents.barbed_wrath -> effectN( 1 ).time_value();
 
-    tick_zero = true; 
+    tick_zero = true;
 
     p -> actions.barbed_shot = this;
 
@@ -7152,11 +7142,12 @@ struct dire_beast_summon_t final : hunter_spell_t
       p()->buffs.huntmasters_call->trigger();
       if ( p()->buffs.huntmasters_call->at_max_stacks() )
       {
+        p()->buffs.huntmasters_call->expire();
         if ( rng().roll( 0.5 ) )
         {
           p()->buffs.summon_fenryr->trigger();
           p()->pets.fenryr.despawn();
-          p()->pets.fenryr.spawn( p()->buffs.summon_fenryr->buff_duration() );
+          make_event( p()->sim, [ this ]() { p()->pets.fenryr.spawn( p()->buffs.summon_fenryr->buff_duration() ); } );
         }
         else
         {
@@ -7164,7 +7155,6 @@ struct dire_beast_summon_t final : hunter_spell_t
           p()->pets.hati.despawn();
           p()->pets.hati.spawn( p()->buffs.summon_hati->buff_duration() );
         }
-        p()->buffs.huntmasters_call->expire();
       }
     }
   }
@@ -7416,11 +7406,7 @@ struct trueshot_t : public hunter_spell_t
     p() -> buffs.trueshot -> expire();
     p() -> buffs.trueshot -> trigger();
     
-    if ( p()->talents.withering_fire.ok() && !is_precombat )
-    {
-      p()->buffs.withering_fire->trigger( p()->buffs.trueshot->data().duration() );
-      p()->trigger_deathblow( true );
-    }
+    p()->buffs.withering_fire->trigger( p()->buffs.trueshot->data().duration() );
 
     if ( p()->talents.feathered_frenzy.ok() )
       p()->trigger_spotters_mark( target, true );
@@ -8280,7 +8266,7 @@ void hunter_t::init_spells()
     talents.kill_cleave                       = find_talent_spell( talent_tree::SPECIALIZATION, "Kill Cleave", HUNTER_BEAST_MASTERY );
     talents.training_expert                   = find_talent_spell( talent_tree::SPECIALIZATION, "Training Expert", HUNTER_BEAST_MASTERY );
     talents.dire_beast                        = find_talent_spell( talent_tree::SPECIALIZATION, "Dire Beast", HUNTER_BEAST_MASTERY );
-    talents.dire_beast_summon                 = talents.dire_beast.ok() ? find_spell( 219199 ) : spell_data_t::not_found();
+    talents.dire_beast_summon                 = find_spell( 219199 );
 
     talents.a_murder_of_crows                 = find_talent_spell( talent_tree::SPECIALIZATION, "A Murder of Crows", HUNTER_BEAST_MASTERY );
     talents.a_murder_of_crows_dot             = talents.a_murder_of_crows.ok() ? find_spell( 131894 ) : spell_data_t::not_found();
@@ -8595,7 +8581,7 @@ void hunter_t::create_actions()
 
   player_t::create_actions();
 
-  if ( talents.dire_beast.ok() )
+  if ( talents.dire_beast.ok() || talents.bloodshed.ok() )
     actions.dire_beast = new spells::dire_beast_summon_t( this );
 
   if ( talents.laceration.ok() )
@@ -8737,12 +8723,6 @@ void hunter_t::create_buffs()
       -> set_default_value_from_effect( 1 )
       -> set_max_stack( std::max( 1, as<int>( talents.thrill_of_the_hunt -> effectN( 2 ).base_value() ) ) )
       -> set_trigger_spell( talents.thrill_of_the_hunt );
-
-  buffs.dire_beast =
-    make_buff( this, "dire_beast", find_spell( 120679 ) -> effectN( 2 ).trigger() )
-      -> modify_duration( talents.dire_frenzy -> effectN( 1 ).time_value() )
-      -> set_default_value_from_effect( 1 )
-      -> set_pct_buff_type( STAT_PCT_BUFF_HASTE );
 
   buffs.bestial_wrath =
     make_buff( this, "bestial_wrath", talents.bestial_wrath )
@@ -8963,12 +8943,6 @@ void hunter_t::create_buffs()
       ->set_default_value_from_effect( 1 )
       ->set_pct_buff_type( STAT_PCT_BUFF_CRIT );
 
-  buffs.stampede = make_buff( this, "stampede", tier_set.tww_s3_pack_leader_4pc_stampede_buff )->set_tick_callback(
-      [ this ]( buff_t*, int, timespan_t ) {
-        actions.stampede->execute();
-      
-    } );
-
   // Hero Talents
 
   buffs.howl_of_the_pack_leader_wyvern = 
@@ -9047,6 +9021,7 @@ void hunter_t::create_buffs()
           }
           else
           {
+            trigger_deathblow( true );
             state.blighted_quiver_count = buffs.blighted_quiver->check();
             buffs.blighted_quiver->expire();
           }
@@ -9066,7 +9041,6 @@ void hunter_t::init_gains()
   player_t::init_gains();
 
   gains.barbed_shot               = get_gain( "Barbed Shot" );
-  gains.dire_beast                = get_gain( "Dire Beast" );
 
   gains.terms_of_engagement       = get_gain( "Terms of Engagement" );
 
@@ -9649,9 +9623,9 @@ double hunter_t::composite_player_pet_damage_multiplier( const action_state_t* s
   if ( mastery.master_of_beasts->ok() )
     m *= 1.0 + cache.mastery_value();
 
-  m *= 1 + specs.beast_mastery_hunter -> effectN( guardian ? 6 : 3 ).percent();
-  m *= 1 + specs.survival_hunter -> effectN( guardian ? 7 : 3 ).percent();
-  m *= 1 + specs.marksmanship_hunter -> effectN( guardian ? 7 : 3 ).percent();
+  m *= 1 + spell_data_t::find_spelleffect( *specs.beast_mastery_hunter, E_APPLY_AURA, guardian ? A_MOD_GUARDIAN_DAMAGE_DONE : A_MOD_PET_DAMAGE_DONE ).percent();
+  m *= 1 + spell_data_t::find_spelleffect( *specs.survival_hunter, E_APPLY_AURA, guardian ? A_MOD_GUARDIAN_DAMAGE_DONE : A_MOD_PET_DAMAGE_DONE ).percent();
+  m *= 1 + spell_data_t::find_spelleffect( *specs.marksmanship_hunter, E_APPLY_AURA, guardian ? A_MOD_GUARDIAN_DAMAGE_DONE : A_MOD_PET_DAMAGE_DONE ).percent();
 
   if ( !guardian )
   {

@@ -1,4 +1,4 @@
-SimulationCraft 1115-02 for World of Warcraft 11.2.0.62049 PTR
+SimulationCraft 1115-02 for World of Warcraft 11.2.0.62253 PTR
 Name             : Block (desc=Passive) (id=107) [Passive] 
 Class            : Warrior, Paladin, Shaman
 School           : Physical
@@ -601,7 +601,7 @@ Family Flags     : 46, 48
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), Allow While Sitting (27), Ignore Line of Sight (66), Not a Proc (105), Do Not Display Range (126), No Cast Log (128), Not In Spellbook (143), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=15852)    : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.17 | Target: Friendly (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 3.5504 | PvP Coefficient: 0.899 | Target: Friendly (21)
 Description      : $@spelldesc20473
 
 Name             : Consecration (id=26573) [Spell Family (10)] 
@@ -1659,7 +1659,7 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=87564)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Sta | Target: Self (1)
 Description      : Increases your Stamina by $s1% while wearing only Plate armor.
 
 Name             : Plate Specialization (desc=Holy, Passive) (id=86103) [Passive, Hidden] 
@@ -1675,7 +1675,7 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=87565)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Int | Target: Self (1)
 Description      : Increases your Intellect by $s1% while wearing only Plate armor.
 
 Name             : Plate Specialization (desc=Retribution, Passive) (id=86539) [Passive, Hidden] 
@@ -1691,7 +1691,7 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=88155)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Str | Target: Self (1)
 Description      : Increases your Strength by $s1% while wearing only Plate armor.
 
 Name             : Ancient Guardian (id=86657) [Spell Family (10), Hidden] 
@@ -2031,7 +2031,7 @@ Effects          :
 #1 (id=128371)   : School Damage (2): holy
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 6.48 | Target: Enemy (6)
 #2 (id=128372)   : Direct Heal (10) | Attributes: Add Target (Dest) Combat Reach to AOE (11)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 4.914 | Radius: 0 - 30 yards | Target: At Enemy (53) -> At Friendly in Area (31)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 5.50368 | PvP Coefficient: 0.899 | Radius: 0 - 30 yards | Target: At Enemy (53) -> At Friendly in Area (31)
 #3 (id=128388)   : Server Side Script (77) | Attributes: Add Target (Dest) Combat Reach to AOE (11)
                    Base Value: 0 | Scaled Value: 0 | Radius: 0 - 30 yards | Target: At Enemy (53) -> To Area (8)
 Description      : $@spelldesc114165
@@ -2057,7 +2057,7 @@ Family Flags     : 65, 90
 Attributes       : Not Shapeshifted (16), Do Not Sheath (18), No Threat (42), Not an Action (92), Active Threat (94), Not a Proc (105), Always AOE Line of Sight (186), Not In Spellbook Until Learned (269), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=128396)   : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 11.34 | Target: Friendly (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 12.7008 | PvP Coefficient: 0.899 | Target: Friendly (21)
 #2 (id=128397)   : School Damage (2): holy
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.457 | Radius: 0 - 30 yards | Target: At Friendly (132) -> At Enemy in Area (16)
 #3 (id=128398)   : Server Side Script (77)
@@ -2638,7 +2638,7 @@ Effects          :
 #13 (id=1032420) : Apply Aura (6) | Modify Guardian Damage Done% (531)
                    Base Value: 0 | Scaled Value: 0
 #14 (id=1032421) : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 129 | Scaled Value: 129 | Target: Self (1)
+                   Base Value: 157 | Scaled Value: 157 | PvP Coefficient: 0.823 | Target: Self (1)
                    Affected Spells: Word of Glory (85673), Eternal Flame (156322), Afterimage (391309), Eternal Flame (461432)
                    Family Flags: 78, 89
 #15 (id=1039315) : Apply Aura (6) | Add Flat Modifier (107): Spell Range (5)
@@ -3895,9 +3895,9 @@ Effects          :
 #1 (id=294436)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Friendly (21)
 #2 (id=338282)   : Apply Aura (6) | Dummy (4)
-                   Base Value: 4 | Scaled Value: 4 | Radius: 0 - 30 yards | Target: At Friendly (132) -> At Friendly in Area (31)
+                   Base Value: 4 | Scaled Value: 4 | Radius: 0 - 40 yards | Target: At Friendly (132) -> At Friendly in Area (31)
 #3 (id=1170128)  : Apply Aura (6) | Modify Damage Taken% (87)
-                   Base Value: -5 | Scaled Value: -5 | Misc Value: 0x7f | Radius: 0 - 30 yards | Target: At Friendly (132) -> At Friendly in Area (31)
+                   Base Value: -5 | Scaled Value: -5 | Misc Value: 0x7f | Radius: 0 - 40 yards | Target: At Friendly (132) -> At Friendly in Area (31)
                    Affected School(s): All
 Description      : Apply a Beacon of Light to your target and $s2 injured allies within $A2 yds for $d.
 
@@ -5149,7 +5149,7 @@ Family Flags     : 46, 82
 Attributes       : Not a Proc (105), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=337592)   : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 1.85472 | Target: Friendly (21)
+                   Base Value: 0 | Scaled Value: 0 (delta=0.05) | SP Coefficient: 2.07729 | PvP Coefficient: 0.899 | Target: Friendly (21)
 Description      : $@spelldesc85222
 
 Name             : PvP Rules Enabled for Dummy (id=228695) [Hidden] 
@@ -5425,7 +5425,7 @@ Labels           : 74
 Attributes       : No Aura Cancel (31)
 Effects          :
 #1 (id=368965)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 4 | Scaled Value: 4 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 4 | Scaled Value: 4 | Stat: Str | Target: Self (1)
 Description      : $@spelldesc238098
 Tooltip          : Strength increased by $s1%.
 
@@ -6173,7 +6173,7 @@ Triggered By     : Redoubt (280373)
 Attributes       : Aura Points On Client (268)
 Effects          :
 #1 (id=737873)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x5 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Str | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc280373
 Tooltip          : Strength and Stamina increased by $w1%.
 
@@ -8658,7 +8658,7 @@ Family Flags     : 53
 Attributes       : Passive (6)
 Effects          :
 #1 (id=885104)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 30 | Scaled Value: 30 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 30 | Scaled Value: 30 | Stat: Sta | Target: Self (1)
 #2 (id=894604)   : Apply Aura (6) | Modify Base Resistance (142)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 1 | Target: Self (1)
 #3 (id=894606)   : Apply Aura (6) | Modify Damage Taken% (87)
@@ -10527,7 +10527,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143)
 Effects          :
 #1 (id=1018689)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x9 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Str | Stat: Int | Target: Self (1)
 #2 (id=1019007)  : Apply Aura (6) | Modify Mastery% (318)
                    Base Value: 2 | Scaled Value: 2 | Target: Self (1)
 Description      : Mastery increased by $s2% and $?c1[intellect][strength] increased by $s1%.
@@ -11858,7 +11858,7 @@ Triggered By     : Inspiring Vanguard (393022)
 Attributes       : Do Not Display Range (126), Aura Points On Client (268)
 Effects          :
 #1 (id=1031665)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x1 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Str | Target: Self (1)
 #2 (id=1031666)  : Dummy (3)
                    Base Value: 0 | Scaled Value: 0 | Trigger Spell: 393020
 Description      : $@spelldesc393020
@@ -12442,7 +12442,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Not In Spellbook (143), Update Passives on Apply/Remove (344), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1049636)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | Stat: Sta | Target: Self (1)
 #2 (id=1049637)  : Apply Aura (6) | Modify AoE Damage Taken% (229)
                    Base Value: -3 | Scaled Value: -3 | Misc Value: 127 | Target: Self (1)
 #3 (id=1052151)  : Apply Aura (6) | Modify Base Resistance (142)
@@ -15593,7 +15593,7 @@ Effects          :
                    Base Value: 20 | Scaled Value: 20 | Target: Self (1)
 #4 (id=1132852)  : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
-Description      : Casting $?c1[Holy Prism or Barrier of Faith]?c3[Wake of Ashes][] causes your next $431522u Holy Power spending abilities to apply Dawnlight on your target, dealing $431380o1 Radiant damage or $431381o1 healing over $431380d.
+Description      : Casting $?c1[Holy Prism or Barrier of Faith]?c3[Wake of Ashes][] causes your next $431522s1 Holy Power spending abilities to apply Dawnlight on your target, dealing $431380o1 Radiant damage or $431381o1 healing over $431380d.
 
 $431581s1% of Dawnlight's damage and healing radiates to nearby allies or enemies, reduced beyond $431581s2 targets.$?c1[
 
@@ -16849,7 +16849,7 @@ Attributes       : Allow Aura While Dead (116), Allow Entering Arena (149), Aura
 Aura Interrupt   : Change Specialization (38), Change Talent (46)
 Effects          :
 #1 (id=1122925)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 2 | Scaled Value: 2 | Misc Value 2: 0x9 | Target: Self (1)
+                   Base Value: 2 | Scaled Value: 2 | Stat: Str | Stat: Int | Target: Self (1)
 #2 (id=1122926)  : Apply Aura (6) | Modify Armor% (101)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 1 | Target: Self (1)
 Description      : $@spelldesc433568
@@ -16904,7 +16904,7 @@ Attributes       : Allow Aura While Dead (116), Allow Entering Arena (149), Aura
 Aura Interrupt   : Change Specialization (38), Change Talent (46)
 Effects          :
 #1 (id=1122972)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 3 | Scaled Value: 3 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 3 | Scaled Value: 3 | Stat: Sta | Target: Self (1)
 #2 (id=1122974)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 Description      : $@spelldesc433583
@@ -19423,6 +19423,35 @@ Description      : $@spelldesc1215709
 Tooltip          : You cannot lose Holy Power!
 Holy Power spenders deal $w1% increased damage.
 
+Name             : All in! (id=1216841) [Spell Family (10), Hidden] 
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 295
+Attributes       : Do Not Display (Spellbook, Aura Icon, Combat Log) (7)
+Effects          :
+#1 (id=1200491)  : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: holy_power | Target: Self (1)
+Description      : $@spelldesc1215709
+
+Name             : Winning Streak! (id=1217003) [Spell Family (10), Hidden] 
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Duration         : 1 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 295
+Attributes       : Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Do Not Consume Aura Stack On Proc (428)
+Effects          :
+#1 (id=1200764)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : $@spelldesc1215707
+
 Name             : Hammer of Light (id=1217116) [Spell Family (10), Hidden] 
 Class            : Paladin
 School           : Holy
@@ -19461,6 +19490,34 @@ Effects          :
                    Base Value: 15 | Scaled Value: 15 | PvP Coefficient: 0.5 | Target: Self (1)
 Description      : $@spelldesc1215987
 Tooltip          : Damage increased by $s1%.$?a1215989[ Shield of the Righteous refunds Holy Power.][]
+
+Name             : Luck of the Draw! (id=1218115) [Spell Family (10)] 
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 295
+Effects          :
+#1 (id=1202742)  : Energize Power (30)
+                   Base Value: 0 | Scaled Value: 0 | Resource: holy_power | Target: Self (1)
+Description      : $@spelldesc1215987
+
+Name             : Winning Streak! (id=1224560) [Spell Family (10), Hidden] 
+Class            : Paladin
+School           : Physical
+Spell Type       : None
+Duration         : 1 seconds
+Labels           : 16: Class Spells
+                 : 26: Paladin Spells
+                 : 292
+                 : 295
+Attributes       : Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Aura Points On Client (268), Do Not Consume Aura Stack On Proc (428)
+Effects          :
+#1 (id=1213295)  : Apply Aura (6) | Dummy (4) | Attributes: Suppress Points Stacking (6)
+                   Base Value: 12 | Scaled Value: 12 | Target: Self (1)
+Description      : $@spelldesc1215707
 
 Name             : Divine Guidance (id=1228455) [Spell Family (10), Hidden] 
 Class            : Paladin
@@ -19523,7 +19580,7 @@ Affecting Spells : Avenging Wrath (31884 effects: #1, #2), Holy Paladin (137029 
 Family Flags     : 46
 Effects          :
 #1 (id=1225484)  : Direct Heal (10)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 2.5 | Target: Friendly (21)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 3.125 | Target: Friendly (21)
 Description      : $@spelldesc1232616
 
 Name             : Execution Sentence (id=1234189) [Spell Family (10)] 

@@ -2556,10 +2556,9 @@ bool action_t::action_ready()
   if ( if_expr && !if_expr->success() )
     return false;
 
-  if ( !cooldown_allow_casting_success && ( ( player->last_foreground_action
-    && player->last_foreground_action->internal_id == internal_id
-    && player->last_foreground_action->time_to_execute > 0_ms )
-    || ( player->executing && player->executing->internal_id == internal_id ) ) )
+  if ( !cooldown_allow_casting_success &&
+       ( ( player->last_foreground_action == this && player->last_foreground_action->time_to_execute > 0_ms ) ||
+         ( player->executing == this ) ) )
   {
     return false;
   }
@@ -5043,9 +5042,9 @@ player_t* action_t::get_expression_target()
   return ( target == player ) ? player->target : target;
 }
 
-void action_t::gain_energize_resource( resource_e resource_type, double amount, gain_t* g )
+double action_t::gain_energize_resource( resource_e resource_type, double amount, gain_t* g )
 {
-  player->resource_gain( resource_type, amount, g, this );
+  return player->resource_gain( resource_type, amount, g, this );
 }
 
 bool action_t::usable_during_current_cast() const

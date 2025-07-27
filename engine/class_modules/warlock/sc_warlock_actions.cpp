@@ -32,7 +32,9 @@ using namespace helpers;
       bool master_demonologist_dd = false;
       bool sacrificed_souls = false;
       bool wicked_maw = false;
+      bool shadowtouched = false;
       bool soul_conduit_base_cost = false;
+      bool master_summoner = false;
 
       // Destruction
       bool chaotic_energies = false;
@@ -106,8 +108,8 @@ using namespace helpers;
       affected_by.umbral_lattice_td = data().affected_by( p->tier.umbral_lattice->effectN( 2 ) );
 
       affected_by.master_demonologist_dd = data().affected_by( p->warlock_base.master_demonologist->effectN( 2 ) );
-      // TOCHECK: 2024-07-12 Despite the value of Effect 2 being 0 for Wicked Maw's debuff, the spells listed for it gain full value as if from Effect 1
-      affected_by.wicked_maw = data().affected_by( p->talents.wicked_maw_debuff->effectN( 1 ) ) || data().affected_by( p->talents.wicked_maw_debuff->effectN( 2 ) );
+      affected_by.wicked_maw = data().affected_by( p->talents.wicked_maw_debuff->effectN( 1 ) );
+      affected_by.shadowtouched = data().affected_by( p->talents.wicked_maw_debuff->effectN( 2 ) );
 
       affected_by.backdraft = data().affected_by( p->talents.backdraft_buff->effectN( 1 ) );
       affected_by.roaring_blaze = p->talents.roaring_blaze.ok() && data().affected_by( p->talents.conflagrate_debuff->effectN( 1 ) );
@@ -127,6 +129,9 @@ using namespace helpers;
       affected_by.xalans_cruelty_dd = data().affected_by( p->hero.xalans_cruelty->effectN( 3 ) );
       affected_by.xalans_cruelty_td = data().affected_by( p->hero.xalans_cruelty->effectN( 4 ) );
       affected_by.xalans_cruelty_crit = data().affected_by( p->hero.xalans_cruelty->effectN( 1 ) );
+
+      if ( sim->dbc->wowv() >= wowv_t{ 11, 2, 0 } )
+        affected_by.master_summoner = data().affected_by( p->talents.master_summoner->effectN( 2 ) );
 
       triggers.decimation = p->talents.decimation.ok();
     }
@@ -267,6 +272,13 @@ using namespace helpers;
 
       if ( diabolist() && triggers.demonic_art )
       {
+        if ( p()->sets->has_set_bonus( HERO_DIABOLIST, TWW3, B2 ) )
+          make_event( *sim, 0_ms, [ this ] {
+            if ( p()->buffs.demonic_oculus->check() &&
+                 ( p()->buffs.art_overlord->check() || p()->buffs.art_mother->check() ||
+                   p()->buffs.art_pit_lord->check() ) )
+              p()->proc_actions.eye_blast->execute_on_target( this->target );
+          } );
         // Force event sequencing in a manner that lets Rain of Fire pick up the persistent multiplier for Touch of Rancora
         make_event( sim, 0_ms, [ this ] { p()->buffs.art_overlord->decrement(); } );
         make_event( sim, 0_ms, [ this ] { p()->buffs.art_mother->decrement(); } );
@@ -442,6 +454,9 @@ using namespace helpers;
       if ( demonology() && affected_by.wicked_maw )
         m *= 1.0 + td( t )->debuffs_wicked_maw->check_value();
 
+      if ( demonology() && affected_by.shadowtouched && p()->talents.shadowtouched.ok() && td( t )->debuffs_wicked_maw->check() )
+        m *= 1.0 + p()->talents.shadowtouched->effectN( 1 ).percent();
+
       if ( destruction() && affected_by.roaring_blaze && p()->talents.roaring_blaze.ok() )
         m *= 1.0 + td( t )->debuffs_conflagrate->check_value();
 
@@ -585,6 +600,9 @@ using namespace helpers;
         if ( p()->buffs.art_pit_lord->check() )
           m *= 1.0 + p()->hero.touch_of_rancora->effectN( 2 ).percent();
       }
+
+      if( demonology() && p()->talents.master_summoner.ok() && affected_by.master_summoner )
+        m *= 1.0 + p()->talents.master_summoner->effectN( 2 ).percent();
 
       return m;
     }
@@ -1529,6 +1547,8 @@ using namespace helpers;
   struct demonic_soul_t : public warlock_spell_t
   {
     bool demoniacs_fervor;
+    const double shadowtouched_value = 0.20;
+    const double shadowtouched_demoniacs_fervor_value = 0.10;
 
     demonic_soul_t( warlock_t* p )
       : warlock_spell_t( "Demonic Soul", p, p->hero.demonic_soul_dmg ),
@@ -1537,6 +1557,7 @@ using namespace helpers;
       background = dual = true;
 
       affected_by.master_demonologist_dd = demonology(); // Note: Technically Demonic Soul is on a separate effect from the others.
+      affected_by.shadowtouched = false; // Note: We set this to false because we will handle it in the overridden 'composite_target_multiplier' function
 
       base_dd_multiplier *= 1.0 + p->hero.wicked_reaping->effectN( 1 ).percent();
 
@@ -1550,6 +1571,22 @@ using namespace helpers;
 
       if ( demoniacs_fervor )
         m *= 1.0 + p()->hero.demoniacs_fervor->effectN( 1 ).percent();
+
+      return m;
+    }
+
+    double composite_target_multiplier( player_t* t ) const override
+    {
+      double m = warlock_spell_t::composite_target_multiplier( t );
+
+      // TOCHECK: 2025-07-27 Despite what is listed in spell data, Shadowtouched increases the damage of Demonic Soul (+10% for main target (demoniacs_fervor), +20% for the rest) (bug?)
+      if ( demonology() && p()->bugs && p()->talents.shadowtouched.ok() && td( t )->debuffs_wicked_maw->check() )
+      {
+        if ( demoniacs_fervor )
+          m *= 1.0 + shadowtouched_demoniacs_fervor_value;
+        else
+          m *= 1.0 + shadowtouched_value;
+      }
 
       return m;
     }
@@ -1580,12 +1617,15 @@ using namespace helpers;
 
   struct wicked_reaping_t : public warlock_spell_t
   {
+    const double shadowtouched_value = 0.50;
+
     wicked_reaping_t( warlock_t* p )
       : warlock_spell_t( "Wicked Reaping", p, p->hero.wicked_reaping_dmg )
     {
       background = dual = true;
 
       affected_by.master_demonologist_dd = demonology();
+      affected_by.shadowtouched = false; // Note: We set this to false because we will handle it in the overridden 'composite_target_multiplier' function
 
       base_dd_multiplier *= 1.0 + p->hero.wicked_reaping->effectN( 1 ).percent();
 
@@ -1594,6 +1634,17 @@ using namespace helpers;
 
       if ( p->hero.soul_anathema.ok() )
         impact_action = new soul_anathema_t( p );
+    }
+
+    double composite_target_multiplier( player_t* t ) const override
+    {
+      double m = warlock_spell_t::composite_target_multiplier( t );
+
+      // TOCHECK: 2025-07-27 Despite what is listed in spell data, Shadowtouched increases the damage of Wicked Reaping (+50%) (bug?)
+      if ( demonology() && p()->bugs && p()->talents.shadowtouched.ok() && td( t )->debuffs_wicked_maw->check() )
+        m *= 1.0 + shadowtouched_value;
+
+      return m;
     }
   };
 
@@ -2522,9 +2573,9 @@ using namespace helpers;
       {
         p()->resource_gain( RESOURCE_SOUL_SHARD, p()->hero.shadow_of_death_energize->effectN( 1 ).base_value() / 10.0, p()->gains.shadow_of_death );
         p()->buffs.succulent_soul->trigger( as<int>( p()->hero.shadow_of_death_energize->effectN( 1 ).base_value() / 10.0 ) );
-        if ( p()->sets->has_set_bonus( HERO_SOUL_HARVESTER, TWW3, B2 ) && p()->tier.sh_tww3_rampaging_demonic_soul->ok() )
+        if ( p()->sets->has_set_bonus( HERO_SOUL_HARVESTER, TWW3, B2 ) && p()->tier.rampaging_demonic_soul->ok() )
         {
-          p()->warlock_pet_list.demonic_souls.spawn( p()->tier.sh_tww3_rampaging_demonic_soul->duration() );
+          p()->warlock_pet_list.demonic_souls.spawn( p()->tier.rampaging_demonic_soul->duration() );
         }
       }
     }
@@ -2761,6 +2812,9 @@ using namespace helpers;
       assert( lrc < as<int>( p()->procs.hand_of_guldan_shards.size() ) && "The procs.hand_of_guldan_shards array needs to be expanded." );
 
       p()->procs.hand_of_guldan_shards[ lrc ]->occur();
+
+      if ( p()->sets->has_set_bonus( HERO_DIABOLIST, TWW3, B2 ) && lrc == 2 /*Manually hardcoding for now since im not sure how the cost data is read*/)
+        p()->buffs.demonic_oculus->trigger();
     }
 
     void impact( action_state_t* s ) override
@@ -2771,7 +2825,7 @@ using namespace helpers;
 
       if ( p()->talents.pact_of_the_imp_mother.ok() && rng().roll( p()->talents.pact_of_the_imp_mother->effectN( 1 ).percent() ) )
       {
-        make_event( *sim, 0_ms, [this, t = target ]{ impact_spell->execute_on_target( t ); } );
+        make_event( *sim, 0_ms, [ this, t = target ] { impact_spell->execute_on_target( t ); } );
         p()->procs.pact_of_the_imp_mother->occur();
       }
     }
@@ -2931,8 +2985,6 @@ using namespace helpers;
         aoe = -1;
         background = dual = true;
         callbacks = false;
-
-        affected_by.wicked_maw = p->talents.shadowtouched.ok(); // 2024-08-01: Despite what is listed in spell data, Wicked Maw seems to only work with Shadowtouched now for Implosion
 
         base_dd_multiplier = 1.0 + p->talents.spiteful_reconstitution->effectN( 1 ).percent();
       }
@@ -3117,6 +3169,9 @@ using namespace helpers;
         callbacks = false;
         radius = p->talents.bilescourge_bombers->effectN( 1 ).radius();
 
+        // TOCHECK: 2025-07-27 Despite what is listed in spell data, Wicked Maw seems to only work with Shadowtouched now for Bilescourge Bombers (bug?)
+        affected_by.wicked_maw = p->bugs && p->talents.shadowtouched.ok();
+
         base_dd_multiplier *= 1.0 + p->talents.shadow_invocation->effectN( 1 ).percent();
       }
     };
@@ -3160,6 +3215,9 @@ using namespace helpers;
       background = dual = direct_tick = true;
       callbacks = false;
       radius = p->find_spell( 267211 )->effectN( 1 ).radius();
+
+      // TOCHECK: 2025-07-27 Despite what is listed in spell data, Wicked Maw seems to only work with Shadowtouched now for Bilescourge Bombers (bug?)
+      affected_by.wicked_maw = p->bugs && p->talents.shadowtouched.ok();
 
       base_dd_multiplier *= 1.0 + p->talents.shadow_invocation->effectN( 1 ).percent();
     }
@@ -3391,9 +3449,9 @@ using namespace helpers;
       {
         p()->resource_gain( RESOURCE_SOUL_SHARD, p()->hero.shadow_of_death_energize->effectN( 1 ).base_value() / 10.0, p()->gains.shadow_of_death );
         p()->buffs.succulent_soul->trigger( as<int>( p()->hero.shadow_of_death_energize->effectN( 1 ).base_value() / 10.0 ) );
-        if( p()->sets->has_set_bonus( HERO_SOUL_HARVESTER, TWW3, B2 ) && p()->tier.sh_tww3_rampaging_demonic_soul->ok() )
+        if( p()->sets->has_set_bonus( HERO_SOUL_HARVESTER, TWW3, B2 ) && p()->tier.rampaging_demonic_soul->ok() )
         {
-          p()->warlock_pet_list.demonic_souls.spawn( p()->tier.sh_tww3_rampaging_demonic_soul->duration() );
+          p()->warlock_pet_list.demonic_souls.spawn( p()->tier.rampaging_demonic_soul->duration() );
         }
       }
     }
@@ -3884,6 +3942,9 @@ using namespace helpers;
 
     void execute() override
     {
+      if ( p()->sets->has_set_bonus( HERO_DIABOLIST, TWW3, B2 ) )
+        p()->buffs.demonic_oculus->trigger();
+
       warlock_spell_t::execute();
 
       // 2022-10-15: Backdraft is not consumed for Ritual of Ruin empowered casts, but IS hasted by it
@@ -4071,6 +4132,9 @@ using namespace helpers;
 
     void execute() override
     {
+      if ( p()->sets->has_set_bonus( HERO_DIABOLIST, TWW3, B2 ) )
+        p()->buffs.demonic_oculus->trigger();
+
       warlock_spell_t::execute();
 
       if ( p()->talents.burn_to_ashes.ok() )
@@ -4189,6 +4253,9 @@ using namespace helpers;
 
     void execute() override
     {
+      if ( p()->sets->has_set_bonus( HERO_DIABOLIST, TWW3, B2 ) )
+        p()->buffs.demonic_oculus->trigger();
+
       warlock_spell_t::execute();
 
       p()->buffs.conflagration_of_chaos_sb->expire();
@@ -4685,6 +4752,85 @@ using namespace helpers;
     }
   };
 
+  struct eye_blast_base_t : public warlock_spell_t
+  {
+    eye_blast_base_t( std::string_view n, warlock_t* p, const spell_data_t* s )
+      : warlock_spell_t( n, p, s )
+    {
+      affected_by.chaotic_energies = true;
+    }
+
+    double composite_da_multiplier( const action_state_t* s ) const override
+    {
+      double m = warlock_spell_t::composite_da_multiplier( s );
+
+      // In its own effect on mastery, so just manually applying it here rather than adding the affected_by to warlock_spell_t
+      if ( p()->warlock_base.master_demonologist->ok() )
+        m *= 1.0 + p()->cache.mastery_value();
+      if ( p()->specialization() == WARLOCK_DEMONOLOGY )
+        m *= 1.0 + p()->sets->set( HERO_DIABOLIST, TWW3, B2 )->effectN( 2 ).percent();
+    
+      m *= p()->buffs.demonic_oculus->check();
+    
+
+      return m;
+    }
+  };
+
+  struct eye_blast_aoe_t final : public eye_blast_base_t
+  {
+    eye_blast_aoe_t( warlock_t* p, std::string_view n ) : eye_blast_base_t( n, p, p->tier.eye_blast )
+    {
+      background             = true;
+      may_miss               = false;
+      spell_power_mod.direct = data().effectN( 2 ).sp_coeff();
+      aoe                    = -1;
+    }
+
+    // Doesnt hit the main target, so we need to override this
+    size_t available_targets( std::vector<player_t*>& tl ) const override
+    {
+      eye_blast_base_t::available_targets( tl );
+
+      auto it = range::find( tl, target );
+      if ( it != tl.end() )
+      {
+        tl.erase( it );
+      }
+
+      return tl.size();
+    }
+  };
+
+  struct eye_blast_t final : public eye_blast_base_t
+  {
+    eye_blast_t( warlock_t* p, std::string_view n ) : eye_blast_base_t( n, p, p->tier.eye_blast )
+    {
+      background             = true;
+      may_miss               = false;
+      spell_power_mod.direct = data().effectN( 1 ).sp_coeff();
+      aoe                    = 0;  // Single Target version, triggers aoe version on impact
+      impact_action          = new eye_blast_aoe_t( p, "eye_blast_aoe" );
+      add_child( impact_action );
+    }
+
+    void execute() override
+    {
+      // In game happens just before the damage
+      if ( p()->sets->has_set_bonus( HERO_DIABOLIST, TWW3, B4 ) )
+        p()->buffs.demonic_intelligence->trigger( p()->buffs.demonic_oculus->check() );
+
+      eye_blast_base_t::execute();
+    }
+
+    void impact( action_state_t* s ) override
+    {
+      eye_blast_base_t::impact( s );
+
+      p()->buffs.demonic_oculus->expire();
+    }
+  };
+
   // Diabolist Actions End
   // Helper Functions Begin
 
@@ -5112,7 +5258,9 @@ using namespace helpers;
   }
 
   void warlock_t::create_diabolist_proc_actions()
-  { }
+  {
+    proc_actions.eye_blast = new eye_blast_t( this, "eye_blast" );
+  }
 
   void warlock_t::create_hellcaller_proc_actions()
   {

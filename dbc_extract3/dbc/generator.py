@@ -1562,6 +1562,8 @@ class SpellDataGenerator(DataGenerator):
          1243133, # Incorporeal Warpclap
          1245643, # Mind-Fracturing Odium
          1224916, 1224917, 1224918, # Void-Touched Fragment
+         1235633, # Soulbinder's Embrace
+         1246637, 1246649, 1246851, # Chaotic Nethergate
         ),
 
         # Warrior:
@@ -1974,7 +1976,8 @@ class SpellDataGenerator(DataGenerator):
           ( 463730, 0 ), # Coagulating Blood for Death Strike
           ( 1232346, 0 ), # Desecrate Damage
           ( 1239422, 0 ), # Blighted Arrow Coil Buff
-          ( 1233351, 0), # Frostreaper debuff
+          ( 1233351, 0 ), # Frostreaper debuff
+          ( 1252004, 0 ), # Apocalypse script
           # Rider of the Apocalypse
           ( 444505, 0 ), # Mograines Might Buff
           ( 444826, 0 ), # Trollbanes Chains of Ice Main
@@ -2489,6 +2492,8 @@ class SpellDataGenerator(DataGenerator):
           ( 425217, 0 ), ( 425219, 0 ), # boundless moonlight
           ( 441585, 0 ), ( 441602, 0 ), # ravage
           ( 439891, 0 ), ( 439893, 0 ), # strategic infusion
+          # Hero sets
+          ( 1236989, 0 ), # EC TWW3 4pc counter
         ),
         # Demon Hunter:
         (
@@ -3434,7 +3439,7 @@ class SpellDataGenerator(DataGenerator):
         # with spell ###### and should be included.
         for spell_id, spell_data in self.db('Spell').items():
             if spell_data.desc:
-                r = re.match(r"\$@spell(?:aura|desc)([0-9]{1,6})", spell_data.desc)
+                r = re.match(r"\$@spell(?:aura|desc|name|tooltip)(\d+)", spell_data.desc)
                 if r and (id := int(r.group(1))) in ids:
                     self.process_spell(spell_id, ids, ids[id]['mask_class'], ids[id]['mask_race'])
 

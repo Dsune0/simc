@@ -2643,14 +2643,18 @@ struct lesser_weapon_cb_t : public dbc_proc_callback_t
     {
       if (p->options.fake_solidarity)
       {
-        for (buff_t* buff : p->fake_lesser_weapon_set )
+        for (auto it = p->fake_lesser_weapon_set.begin(); it != p->fake_lesser_weapon_set.end(); )
         {
-          buff->decrement();
-          if ( buff->stack() <= 0 )
+          *it = *it - 1;
+          if ( *it <= 0 )
           {
-            p->fake_lesser_weapon_set.erase( buff );
+            it = p->fake_lesser_weapon_set.erase( it );
             if ( p->fake_lesser_weapon_set.size() <= 0 )
               p->buffs.lightsmith.lesser_weapon->expire();
+          }
+          else
+          {
+            it++;
           }
         }
       }
@@ -2828,7 +2832,7 @@ void paladin_t::cast_holy_armaments( player_t* target, armament usedArmament, ar
   {
     buffs.lightsmith.fake_solidarity->trigger();
   }
-  if ( src != LS_DIVINE_INSPIRATION )
+  if ( sets->has_set_bonus(HERO_LIGHTSMITH, TWW3, B4) && src != LS_DIVINE_INSPIRATION )
   {
     cast_lesser_armament( buffs.lightsmith.masterwork->stack(),
                           usedArmament == SACRED_WEAPON ? LESSER_WEAPON : LESSER_BULWARK );
@@ -2891,12 +2895,10 @@ void paladin_t::cast_lesser_armament(int amount, lesser_armament usedArmament)
       if ( !buffs.lightsmith.lesser_weapon->up() )
         buffs.lightsmith.lesser_weapon->trigger();
 
-      buff_t* b = make_buff( this, "fake_lesser_weapon" )
-                      ->set_chance( 1 )
-                      ->set_max_stack( buffs.lightsmith.lesser_weapon->max_stack() )
-        ->set_quiet(true);
-      b->trigger(5);
-      fake_lesser_weapon_set.insert( b );
+      for ( int i = 0; i < amount; i++ )
+      {
+        fake_lesser_weapon_set.push_back( 5 );
+      }
     }
   }
 }
@@ -4173,6 +4175,11 @@ void paladin_t::create_buffs()
   // Not going to implement this "correctly", too much overhead for too little informational gain
   buffs.lightsmith.lesser_bulwark = make_buff<buffs::lesser_bulwark_buff_t>( this );
   buffs.lightsmith.lesser_weapon = make_buff( this, "lesser_weapon", find_spell( 1239091 ) );
+  buffs.lightsmith.fake_tww3_ls_bh = make_buff( this, "fake_tww3_ls_bh" )
+                                         ->set_duration( 5_s )
+                                         ->set_chance( 1 )
+                                         ->set_stack_behavior( buff_stack_behavior::ASYNCHRONOUS )
+                                         ->set_max_stack( 5 );
   buffs.lightsmith.blessed_assurance =
       make_buff( this, "blessed_assurance", find_spell( 433019 ) )->set_default_value_from_effect( 1 );
   buffs.lightsmith.divine_guidance = make_buff( this, "divine_guidance", find_spell( 433106 ) )->set_max_stack( 5 );
@@ -4265,7 +4272,7 @@ void paladin_t::create_buffs()
                                                 buffs.herald_of_the_sun.suns_avatar->expire();
                                           } );
 
-  if ( sets->has_set_bonus( HERO_HERALD_OF_THE_SUN, TWW3, B4 ) )
+  if ( sets->has_set_bonus( HERO_HERALD_OF_THE_SUN, TWW3, B4 ) && talents.herald_of_the_sun.dawnlight->ok() )
   {
     int solar_wrath_dawnlight_stacks = sets->set( HERO_HERALD_OF_THE_SUN, TWW3, B4 )->effectN( 2 ).base_value();
     if ( talents.radiant_glory->ok() )

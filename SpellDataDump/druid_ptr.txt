@@ -1,4 +1,4 @@
-SimulationCraft 1115-02 for World of Warcraft 11.2.0.62049 PTR
+SimulationCraft 1115-02 for World of Warcraft 11.2.0.62253 PTR
 Name             : Incapacitating Roar (id=99) [Spell Family (7)] 
 Talent Entry     : Generic [tree=class, row=9, col=1, max_rank=1, req_points=20, select_idx=100]
 Class            : Druid
@@ -294,7 +294,7 @@ Effects          :
 #1 (id=117063)   : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 14 | Target: Self (1)
 #2 (id=427)      : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 25 | Scaled Value: 25 | Misc Value: 2 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 25 | Scaled Value: 25 | Misc Value: 2 | Stat: Sta | Target: Self (1)
 #3 (id=117069)   : Apply Aura (6) | Dummy (4)
                    Base Value: 3 | Scaled Value: 3 | Target: Self (1)
 #4 (id=164016)   : Apply Aura (6) | Modify Damage Taken% (87)
@@ -2553,11 +2553,11 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=87555)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Agi | Target: Self (1)
 #2 (id=158298)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Int | Target: Self (1)
 #3 (id=158302)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Sta | Target: Self (1)
 Description      : Increases your Intellect by $s2% while wearing only Leather armor.
 
 Name             : Leather Specialization (id=86096) [Spell Family (7), Passive] 
@@ -2574,11 +2574,11 @@ Stance Mask      : 0x00000010
 Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=87558)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Agi | Target: Self (1)
 #2 (id=158299)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Int | Target: Self (1)
 #3 (id=158301)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Sta | Target: Self (1)
 Description      : Increases your Stamina in Bear Form by $s3% while wearing only Leather armor.
 
 Name             : Leather Specialization (id=86097) [Spell Family (7), Passive] 
@@ -2594,11 +2594,11 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=87559)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Agi | Target: Self (1)
 #2 (id=158303)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Int | Target: Self (1)
 #3 (id=158304)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Sta | Target: Self (1)
 Description      : Increases your Agility by $s1% while wearing only Leather armor.
 
 Name             : Leather Specialization (id=86104) [Spell Family (7), Passive] 
@@ -2614,11 +2614,11 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Log (8), Not In Spellbook (143), Requires Equipped Inv Types (276), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=87566)    : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Agi | Target: Self (1)
 #2 (id=158306)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Misc Value 2: 0x8 | Target: Self (1)
+                   Base Value: 5 | Scaled Value: 5 | SP Coefficient: 0.25 | Stat: Int | Target: Self (1)
 #3 (id=158307)   : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.25 | Stat: Sta | Target: Self (1)
 Description      : Increases your Intellect by $s2% while wearing only Leather armor.
 
 Name             : Nature's Cure (id=88423) [Spell Family (7)] 
@@ -4195,11 +4195,11 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=179693)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 151 | Scaled Value: 151 | Target: Self (1)
+                   Base Value: 181 | Scaled Value: 181 | Target: Self (1)
                    Affected Spells: Maul (6807), Mangle (33917), Thrash (77758), Pulverize (80313), Thrash (192090), Brambles (203958), Lunar Beam (204069), Brambles (213709), Swipe (213771), Architect's Aligner (363789), Thorns of Iron (400223), Raze (400254), Lunar Beam (414613), Ravage (441605), Dreadful Wound (451177)
                    Family Flags: 77
 #2 (id=191158)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 151 | Scaled Value: 151 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 181 | Scaled Value: 181 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Maul (6807), Mangle (33917), Thrash (77758), Pulverize (80313), Thrash (192090), Brambles (203958), Lunar Beam (204069), Brambles (213709), Swipe (213771), Architect's Aligner (363789), Thorns of Iron (400223), Raze (400254), Lunar Beam (414613), Ravage (441605), Dreadful Wound (451177)
                    Family Flags: 77
 #3 (id=191159)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
@@ -4257,11 +4257,11 @@ Effects          :
 #18 (id=1088946) : Apply Aura (6) | Modify Mana Regen% (379)
                    Base Value: 60 | Scaled Value: 60 | Target: Self (1)
 #19 (id=1091200) : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 53 | Scaled Value: 53 | Target: Self (1)
+                   Base Value: 71 | Scaled Value: 71 | Target: Self (1)
                    Affected Spells: Moonfire (8921), Moonfire (164812)
                    Family Flags: 21, 92
 #20 (id=1091201) : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 53 | Scaled Value: 53 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 71 | Scaled Value: 71 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Moonfire (8921), Moonfire (164812)
                    Family Flags: 21, 92
 #21 (id=1176394) : Apply Aura (6) | Apply Percent Modifier w/ Label (218): Spell Direct Amount (0)
@@ -4290,11 +4290,11 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=179694)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 14 | Scaled Value: 14 | PvP Coefficient: 0.79 | Target: Self (1)
+                   Base Value: 22 | Scaled Value: 22 | PvP Coefficient: 0.79 | Target: Self (1)
                    Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Sickle of the Lion (363830), Rampant Ferocity (391710), Adaptive Swarm (391889), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812)
                    Family Flags: 98
 #2 (id=191154)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 14 | Scaled Value: 14 | PvP Coefficient: 0.79 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 22 | Scaled Value: 22 | PvP Coefficient: 0.79 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Rip (1079), Rake (1822), Shred (5221), Ferocious Bite (22568), Maim (22570), Swipe (106785), Thrash (106830), Moonfire (155625), Rake (155722), Brutal Slash (202028), Feral Frenzy (274838), Primal Wrath (285381), Sickle of the Lion (363830), Rampant Ferocity (391710), Adaptive Swarm (391889), Thrash (405233), Bloodseeker Vines (439531), Bursting Growth (440122), Ravage (441591), Dreadful Wound (441812)
                    Family Flags: 98
 #3 (id=191155)   : Apply Aura (6) | Add Flat Modifier (107): Spell Cooldown (11)
@@ -4310,9 +4310,9 @@ Effects          :
 #6 (id=260767)   : Apply Aura (6) | Modify Power Regen (110)
                    Base Value: 10 | Scaled Value: 10 | Misc Value: 3 | Target: Self (1)
 #7 (id=260768)   : Apply Aura (6) | Modify Pet Damage Done% (429)
-                   Base Value: 14 | Scaled Value: 14 | PvP Coefficient: 0.79 | Target: Self (1)
+                   Base Value: 22 | Scaled Value: 22 | PvP Coefficient: 0.79 | Target: Self (1)
 #8 (id=260769)   : Apply Aura (6) | Modify Guardian Damage Done% (531)
-                   Base Value: 14 | Scaled Value: 14 | PvP Coefficient: 0.79 | Target: Self (1)
+                   Base Value: 22 | Scaled Value: 22 | PvP Coefficient: 0.79 | Target: Self (1)
 #9 (id=260770)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 15 | Scaled Value: 15 | Target: Self (1)
                    Affected Spells: Swiftmend (18562), Swiftmend (422094)
@@ -4480,15 +4480,15 @@ Labels           : 16: Class Spells
 Attributes       : Is Ability (4), Passive (6), Do Not Display (Spellbook, Aura Icon, Combat Log) (7), Do Not Log (8), Allow Class Ability Procs (416)
 Effects          :
 #1 (id=179696)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
-                   Base Value: 9 | Scaled Value: 9 | Target: Self (1)
+                   Base Value: 18 | Scaled Value: 18 | Target: Self (1)
                    Affected Spells: Wrath (5176), Starsurge (78674), Fungal Growth (81281), Wild Mushroom (88751), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Wrath (190984), Starfall (191037), Starfire (194153), Starsurge (197626), Starfire (197628), Sunfire (197630), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (211545), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Lunar Shrapnel (279641), Fury of Elune (281871), Thorns (305496), Adaptive Swarm (325733), Star Burst (356474), Starfall (359399), Orbital Strike (361237), Fury of Elune (365640), Power of Goldrinn (394046), Goldrinn's Fang (394047), Fury of Elune (394111), Star Burst (406430), Crashing Star (408310), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Crashing Star (468981)
                    Family Flags: 18
 #2 (id=191146)   : Apply Aura (6) | Add Percent Modifier (108): Spell Periodic Amount (22)
-                   Base Value: 9 | Scaled Value: 9 | Misc Value: 22 | Target: Self (1)
+                   Base Value: 18 | Scaled Value: 18 | Misc Value: 22 | Target: Self (1)
                    Affected Spells: Wrath (5176), Starsurge (78674), Fungal Growth (81281), Wild Mushroom (88751), Moonfire (164812), Sunfire (164815), Fey Missile (188046), Wrath (190984), Starfall (191037), Starfire (194153), Starsurge (197626), Starfire (197628), Sunfire (197630), Stellar Flare (202347), Shooting Stars (202497), Fury of Elune (211545), Streaking Star (272873), New Moon (274281), Half Moon (274282), Full Moon (274283), Lunar Shrapnel (279641), Fury of Elune (281871), Thorns (305496), Adaptive Swarm (325733), Star Burst (356474), Starfall (359399), Orbital Strike (361237), Fury of Elune (365640), Power of Goldrinn (394046), Goldrinn's Fang (394047), Fury of Elune (394111), Star Burst (406430), Crashing Star (408310), Minor Moon (424588), Boundless Moonlight (428682), Dream Burst (433850), Crashing Star (468981)
                    Family Flags: 18
 #3 (id=191147)   : Apply Aura (6) | Modify Pet Damage Done% (429)
-                   Base Value: 9 | Scaled Value: 9 | Target: Self (1)
+                   Base Value: 18 | Scaled Value: 18 | Target: Self (1)
 #4 (id=191148)   : Apply Aura (6) | Add Percent Modifier (108): Spell Direct Amount (0)
                    Base Value: 75 | Scaled Value: 75 | Target: Self (1)
                    Affected Spells: Regrowth (8936)
@@ -12512,7 +12512,7 @@ Effects          :
 #1 (id=1007521)  : Apply Aura (6) | Modify Critical Strike% (290)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
 #2 (id=1225959)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 4 | Scaled Value: 4 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 4 | Scaled Value: 4 | Stat: Sta | Target: Self (1)
 Description      : $@spelldesc378988
 
 Name             : Lycara's Teachings (id=378991) [Spell Family (7)] 
@@ -16103,7 +16103,7 @@ Attributes       : Do Not Sheath (18), No Threat (42), Ignore Line of Sight (66)
 Aura Interrupt   : Enter World (22), Change Specialization (38), Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=1072406)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 1 | Scaled Value: 1 | PvP Coefficient: 0.5 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 1 | Scaled Value: 1 | PvP Coefficient: 0.5 | Stat: Agi | Target: Self (1)
 Description      : $@spelldesc405512
 Tooltip          : Agility increased by $w1%.
 
@@ -16120,7 +16120,7 @@ Attributes       : Do Not Sheath (18), No Threat (42), Ignore Line of Sight (66)
 Aura Interrupt   : Enter World (22), Change Specialization (38), Raid Encounter Start or M+ Start (40)
 Effects          :
 #1 (id=1072615)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 0.5 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 8 | Scaled Value: 8 | PvP Coefficient: 0.5 | Stat: Agi | Target: Self (1)
 #2 (id=1072616)  : Apply Aura (6) | Periodic Trigger Spell (23): Predator Revealed every 2 seconds
                    Base Value: 1 | Scaled Value: 1 | Trigger Spell: 411344 | Target: Self (1)
 Description      : $@spelldesc405513
@@ -18644,7 +18644,7 @@ Effects          :
 #2 (id=1137166)  : Apply Aura (6) | Modify Base Resistance (142)
                    Base Value: 0 | Scaled Value: 0 | Misc Value: 1 | Target: Self (1)
 #3 (id=1137167)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 0 | Scaled Value: 0 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 0 | Scaled Value: 0 | Stat: Sta | Target: Self (1)
 #4 (id=1164939)  : Apply Aura (6) | Modify Attacker Melee Crit Chance (187)
                    Base Value: -6 | Scaled Value: -6 | Target: Self (1)
 #5 (id=1164940)  : Apply Aura (6) | Modify Expertise% (240)
@@ -18959,7 +18959,7 @@ Triggered By     : Killing Strikes (441824)
 Attributes       : No Threat (42), Ignore Line of Sight (66), Do Not Display Range (126), Allow Cast While Casting (135), Aura Points On Client (268)
 Effects          :
 #1 (id=1136554)  : Apply Aura (6) | Modify Total Stat% (137) | Attributes: Suppress Points Stacking (6)
-                   Base Value: 8 | Scaled Value: 8 | Misc Value 2: 0x2 | Target: Self (1)
+                   Base Value: 8 | Scaled Value: 8 | Stat: Agi | Target: Self (1)
 #2 (id=1136556)  : Apply Aura (6) | Add Percent Modifier (108): Spell Effect 1 (3)
                    Base Value: 20 | Scaled Value: 20 | Misc Value: 3 | Target: Self (1)
                    Affected Spells: Ironfur (192081)
@@ -19216,7 +19216,7 @@ Labels           : 16: Class Spells
 Attributes       : Passive (6), Not In Spellbook (143), Do Not Log on Learn (355)
 Effects          :
 #1 (id=1148118)  : Apply Aura (6) | Modify Total Stat% (137)
-                   Base Value: 4 | Scaled Value: 4 | Misc Value 2: 0x4 | Target: Self (1)
+                   Base Value: 4 | Scaled Value: 4 | Stat: Sta | Target: Self (1)
 #2 (id=1194507)  : Apply Aura (6) | Add Flat Modifier (107): Spell Effect 2 (12)
                    Base Value: 5 | Scaled Value: 5 | Misc Value: 12 | Target: Self (1)
                    Affected Spells: Bear Form Passive (1178)
@@ -20807,6 +20807,50 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | SP Coefficient: 4.8 | PvP Coefficient: 0.5 | Target: Friendly (21)
 Description      : $@spelldesc1215502
 
+Name             : Insurance! (id=1215544) [Spell Family (53)] 
+Class            : Monk, Druid
+School           : Physical
+Spell Type       : None
+Range            : 100 yards
+Duration         : 15 seconds
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 295
+Proc Chance      : 100%
+Proc Flags       : White Melee Taken, Yellow Melee Taken, White Ranged Taken, Yellow Ranged Taken, Generic Heal Taken, Generic Hostile Spell Taken, Magic Heal Taken, Magic Hostile Spell Taken, Periodic Taken, Helpful Periodic Taken
+Affecting Spells : Renewing Mist (119611 effect#2), Enveloping Mist (124682 effect#2), Mistweaver Monk (137024 effects: #1, #2, #31, #32), Dome of Mist (205655 effect#2), Enveloping Breath (325209 effect#3), Enveloping Breath (358560 effect#3), Primordial Mending (364266 effects: #1, #2), Mending Proliferation (388510 effect#2), Save Them All (390105 effects: #1, #2), Jadefire Brand (395413 effect#1), Lesson of Doubt (400097 effect#1), Chi Harmony (423439 effect#1), Renewing Mist (448430 effect#2), Lighter Than Air (449609 effect#3), Chi Proficiency (450426 effects: #2, #3), Aspect of Harmony (450769 effect#2), Wisdom of the Wall (452684 effect#1), Chi Harmony (457013 effect#1), Luck of the Draw! (1217990 effects: #1, #2), Renewing Mist (1238851 effect#2)
+Triggered By     : Monk Mistweaver 11.1 Class Set 2pc (1215543)
+Family Flags     : 48
+Attributes       : Can Proc From Procs (122), Spell Haste Affects Periodic (173), Periodic Can Crit (265)
+Aura Interrupt   : Change Specialization (38)
+Effects          :
+#1 (id=1198567)  : Apply Aura (6) | Periodic Heal (8): every 3 seconds
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 0.55223 | PvP Coefficient: 0.5 | Target: Friendly (21)
+#2 (id=1198568)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 40 | Scaled Value: 40 | Target: Friendly (21)
+Description      : $@spelldesc1215502
+Tooltip          : Healing $s1 every $t sec.
+
+|cFFFFFFFFInsurance!|r is consumed to heal for $1215545s1 if brought below $s2% health.
+
+Name             : Insurance! (id=1215545) [Spell Family (53)] 
+Class            : Monk, Druid
+School           : Physical
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 22: Monk Spells
+                 : 292
+                 : 295
+Affecting Spells : Renewing Mist (119611 effect#2), Enveloping Mist (124682 effect#2), Mistweaver Monk (137024 effects: #1, #2, #31, #32), Dome of Mist (205655 effect#2), Enveloping Breath (325209 effect#3), Enveloping Breath (358560 effect#3), Primordial Mending (364266 effects: #1, #2), Mending Proliferation (388510 effect#2), Save Them All (390105 effects: #1, #2), Jadefire Brand (395413 effect#1), Lesson of Doubt (400097 effect#1), Chi Harmony (423439 effect#1), Renewing Mist (448430 effect#2), Lighter Than Air (449609 effect#3), Chi Proficiency (450426 effects: #2, #3), Aspect of Harmony (450769 effect#2), Wisdom of the Wall (452684 effect#1), Chi Harmony (457013 effect#1), Luck of the Draw! (1217990 effects: #1, #2), Renewing Mist (1238851 effect#2)
+Family Flags     : 48
+Attributes       : Allow Cast While Dead (23), Allow While Mounted (24), Allow While Sitting (27), Allow While Stealthed (37), Allow While Invisible (78), Allow While Not Shapeshifted (caster form) (83), Can Proc From Procs (122), Allow While Stunned (163), Allow While Fleeing (177), Allow While Confused (178), Allow While Riding Vehicle (204), Allow While Charmed (261), Allow While Banished Aura State (299), Allow While Stunned By Horror Mechanic (342), Allow While Stunned by Stun Mechanic (378), Allow While Feared By Fear Mechanic (417), Unknown (452)
+Effects          :
+#1 (id=1198569)  : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 | SP Coefficient: 1.65669 | PvP Coefficient: 0.5 | Target: Friendly (21)
+Description      : $@spelldesc1215502
+
 Name             : Druid Restoration 11.1 Class Set 4pc (id=1215619) [Spell Family (7), Passive, Hidden] 
 Class            : Druid
 School           : Physical
@@ -21389,6 +21433,7 @@ Labels           : 16: Class Spells
                  : 292
 Triggered By     : Druid Keeper of the Grove 11.2 Class Set 2pc (1236334)
 Attributes       : No Aura Cancel (31), No 'Summon + Dest from Client' Targeting Pathing Requirement (277), Allow Class Ability Procs (416)
+Aura Interrupt   : Leave World (19), Enter World (22)
 Effects          :
 #1 (id=1232578)  : Apply Aura (6) | Dummy (4)
                    Base Value: 0 | Scaled Value: 0 | Target: Self (1)
@@ -21573,6 +21618,20 @@ Effects          :
                    Base Value: 0 | Scaled Value: 0 | Target: Enemy (6)
 Description      : $@spelldesc1236336
 
+Name             : Dryad's Favor (id=1236853) [Spell Family (7)] 
+Class            : Druid
+School           : Nature
+Spell Type       : None
+Range            : 100 yards
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+Attributes       : Can't Crit (93), Ignore Healing Modifiers (219)
+Effects          :
+#1 (id=1233183)  : Direct Heal (10)
+                   Base Value: 0 | Scaled Value: 0 | Target: Friendly (21)
+Description      : $@spelldesc1236336
+
 Name             : Starsurge (id=1236917) [Spell Family (7)] 
 Class            : Druid
 School           : Astral
@@ -21589,6 +21648,27 @@ Effects          :
 #1 (id=1233308)  : School Damage (2): astral
                    Base Value: 0 | Scaled Value: 0 (delta=0.05) | PvP Coefficient: 0.33 | Target: Enemy (6)
 Description      : $@spelldesc78674
+
+Name             : Gathering Moonlight (id=1236989) [Spell Family (7)] 
+Class            : Druid
+School           : Physical
+Spell Type       : None
+Duration         : 20 seconds
+Labels           : 16: Class Spells
+                 : 21: Druid Spells
+                 : 292
+                 : 295
+                 : 5061
+Stacks           : 6 maximum
+Proc Chance      : 100%
+Proc Flags       : Yellow Melee, Generic Hostile Spell, Magic Hostile Spell
+Attributes       : Do Not Sheath (18), No Threat (42), Include In Advanced Combat Log (72), Allow Cast While Casting (135), Aura Points On Client (268), Allow Cast While Channeling (308)
+Aura Interrupt   : Enter World (22), Change Specialization (38), Change Talent (46)
+Effects          :
+#1 (id=1233472)  : Apply Aura (6) | Dummy (4)
+                   Base Value: 0 | Scaled Value: 0 | Target: Self (1)
+Description      : $@spelldesc1236333
+Tooltip          : Casting $?c1[Fury of Elune or Full Moon][Lunar Beam] consumes Gathering Moonlight to increase your damage by $1236990s1% for $1236990d.
 
 Name             : Moonlight Suffusion (id=1236990) [Spell Family (7)] 
 Class            : Druid
